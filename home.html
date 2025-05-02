@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TravelWise</title>
+  <link rel="stylesheet" href="Homestyle.css" />
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header>
+    <div class="logo">🌍 TravelWise</div>
+    <nav>
+      <ul>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+<section class="hero-background">
+    <div class="hero-overlay">
+      <div class="hero-search">
+        <form action="search.php" method="GET">
+          <label for="city">Where To?:</label>
+          <div class="search-group">
+            <input type="text" name="city" id="city" placeholder="Which city would you like visit?" required>
+            <button type="submit">🔍</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- Popular Activities -->
+  <section id="popular" class="popular-section">
+    <h2>Popular Activities in the Bay</h2>
+    <div class="activity-cards">
+      <div class="card">
+        <img src="https://source.unsplash.com/featured/?hiking" alt="Hiking">
+        <h3>Golden Gate Hike</h3>
+        <p>Enjoy panoramic views while walking across San Francisco’s iconic bridge.</p>
+      </div>
+      <div class="card">
+        <img src="https://source.unsplash.com/featured/?museum" alt="Museum">
+        <h3>Tech Museum</h3>
+        <p>Explore innovation in the heart of Silicon Valley in San Jose.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Use TravelWise -->
+<section class="why-us">
+    <h2>Why TravelWise?</h2>
+    <div class="benefits">
+      <div class="benefit">
+        <h3>Real Reviews</h3>
+        <p>Get insights from travelers just like you.</p>
+      </div>
+      <div class="benefit">
+        <h3>Local Gems</h3>
+        <p>Discover activities you won’t find in guidebooks.</p>
+      </div>
+      <div class="benefit">
+        <h3>Book Anytime</h3>
+        <p>Flexible booking options for every traveler.</p>
+      </div>
+    </div>
+  </section>
+  
+
+  <script src="Homescript.js"></script>
+</body>
+</html>
