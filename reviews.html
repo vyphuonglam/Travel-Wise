@@ -1,13 +1,204 @@
-<!-- Example: reviews.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Reviews | TravelWise</title>
-  <link rel="stylesheet" href="Homestyle.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <title>Reviews</title>
+  <style>
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background-color: white;
+      border-bottom: 1px solid #ddd;
+      font-family: 'Open Sans', sans-serif;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .logo a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .nav-links a {
+      margin-left: 30px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #4a148c;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: #f8f8f8;
+      color: #222;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      letter-spacing: 8px;
+      margin-top: 60px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 40px;
+    }
+
+    /* Review Section */
+    .review-section {
+      overflow-y: scroll;
+    }
+
+    .review {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 30px;
+      box-sizing: border-box;
+      text-align: center;
+      height: 100vh;
+    }
+
+    .review.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .review img {
+      width: 100%;
+      max-height: 60vh;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .review h2 {
+      margin: 20px 0 10px;
+      font-size: 2rem;
+    }
+
+    .stars {
+      font-size: 1.5rem;
+      color: #FFD700;
+    }
+
+    .description {
+      max-width: 700px;
+      margin-top: 10px;
+      font-size: 1.1rem;
+      color: #444;
+    }
+
+    .scroll-hint {
+      position: fixed;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
-  <h1>Traveler Reviews</h1>
-  <p>This is where users can read and share travel reviews.</p>
-  <a href="home.html">← Back to Home</a>
+
+<!-- Header -->
+<header class="navbar">
+  <div class="logo">
+    <a href="home.html">🌍 TravelWise</a>
+  </div>
+  <nav class="nav-links">
+    <a href="reviews.html">Reviews</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+</header>
+
+<!-- Page Title -->
+<h1>REVIEWS</h1>
+<p class="subtitle">Read our customers experience</p>
+
+<!-- Reviews -->
+<div class="review-section">
+
+  <div class="review">
+    <img src="images/bowling.jpg" alt="Bowl Lounge SF">
+    <h2>Bowl Lounge – San Francisco</h2>
+    <div class="stars">★★★☆☆½</div>
+    <p class="description">Fun bowling vibe with music and snacks, but a little crowded on weekends. Great for casual hangouts.</p>
+  </div>
+
+  <div class="review">
+    <img src="images/techmuseum.jpg" alt="Tech Time Museum SF">
+    <h2>Tech Time Museum – San Francisco</h2>
+    <div class="stars">★★★★☆</div>
+    <p class="description">Interactive exhibits make it fun for all ages. A few sections were closed, but still an exciting and educational experience.</p>
+  </div>
+
+  <div class="review">
+    <img src="images/oaklandzoo.jpg" alt="Urban Jungle Oakland">
+    <h2>Urban Jungle – Oakland</h2>
+    <div class="stars">★★★★★</div>
+    <p class="description">Absolutely thrilling! Great mix of climbing, zip lines, and obstacle courses. Staff was helpful and safety was top notch.</p>
+  </div>
+
+  <div class="review">
+    <img src="images/gokart.jpg" alt="Turbo Track SJ">
+    <h2>Turbo Track – San Jose</h2>
+    <div class="stars">★★★★☆</div>
+    <p class="description">Awesome high-speed go-karts and a great layout. Could use more track lighting at night though.</p>
+  </div>
+
+  <div class="review">
+    <img src="images/topgolf.jpg" alt="Drive Time SJ">
+    <h2>Drive Time – San Jose</h2>
+    <div class="stars">★★☆☆☆</div>
+    <p class="description">The concept is cool but the cars felt outdated and the experience wasn’t as smooth as expected.</p>
+  </div>
+
+</div>
+
+<div class="scroll-hint">Scroll down to see more reviews</div>
+
+<!-- Fade-in Animation Script -->
+<script>
+  const reviews = document.querySelectorAll('.review');
+  const revealOnScroll = () => {
+    reviews.forEach((review) => {
+      const rect = review.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        review.classList.add('visible');
+      }
+    });
+  };
+
+  window.addEventListener('scroll', revealOnScroll);
+  window.addEventListener('load', revealOnScroll);
+</script>
+
 </body>
 </html>
