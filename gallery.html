@@ -1,13 +1,185 @@
-<!-- Example: gallery.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Gallery | TravelWise</title>
-  <link rel="stylesheet" href="Homestyle.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gallery</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+  /* ---------- NAVIGATION ---------- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 30px; /* 👈 Small padding keeps navbar slim */
+      background-color: #ffffff; /* your chosen navbar color */
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      height: 50px; /* 👈 Optional hard limit on navbar height */
+    }
+
+    .logo-img {
+      height: 140px;        /* 👈 Adjust for visual size */
+      max-height: 100%;    /* Keeps it inside navbar */
+      object-fit: contain;
+      display: block;
+    }
+    .nav-links {
+      display: flex;
+      gap: 25px; /* ✅ Replaces margin-left with a modern layout */
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #007BFF;
+    }
+
+    /* Page title */
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      letter-spacing: 6px;
+      font-family: 'Playfair Display', serif;
+      margin: 0;
+      padding: 40px 0;
+      background: linear-gradient(to bottom right, #fdfbfb, #ebedee);
+    }
+
+    /* Gallery Styles */
+    .gallery {
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      height: 100vh;
+    }
+
+    .gallery-item {
+      scroll-snap-align: start;
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      box-sizing: border-box;
+      border: 10px solid rgb(255, 255, 255);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out forwards;
+    }
+
+    .gallery-item:nth-child(1) { animation-delay: 0s; }
+    .gallery-item:nth-child(2) { animation-delay: 0.3s; }
+    .gallery-item:nth-child(3) { animation-delay: 0.6s; }
+    .gallery-item:nth-child(4) { animation-delay: 0.9s; }
+    .gallery-item:nth-child(5) { animation-delay: 1.2s; }
+    .gallery-item:nth-child(6) { animation-delay: 1.5s; }
+    .gallery-item:nth-child(7) { animation-delay: 1.8s; }
+    .gallery-item:nth-child(8) { animation-delay: 2.1s; }
+    .gallery-item:nth-child(9) { animation-delay: 2.4s; }
+    .gallery-item:nth-child(10) { animation-delay: 2.7s; }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .caption {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  letter-spacing: 1px;
+  transition: transform 0.3s ease;
+}
+
+.caption:hover {
+  transform: scale(1.05);
+}
+
+  </style>
 </head>
 <body>
-  <h1>Gallery</h1>
-  <p>This is where users can pictures of activities.</p>
-  <a href="home.html">← Back to Home</a>
+
+<!-- Header -->
+<header class="navbar">
+  <div class="logo">
+    <a href="home.html">
+      <img src="images/travel.png" alt="TravelWise Logo" class="logo-img">
+    </a>
+  </div>
+  <nav class="nav-links">
+    <a href="reviews.html">Reviews</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+</header>
+
+<!-- Page Title -->
+<h1>Gallery</h1>
+
+<!-- Gallery Items -->
+<div class="gallery">
+  <div class="gallery-item" style="background-image: url('images/okalandtheatre.jpg');">
+    <div class="caption">CityStage – Oakland</div>
+  </div>
+  <div class="gallery-item" style="background-image: url('images/escaperoomsj.jpg');">
+    <div class="caption">EscapeX – San Jose (escape room)</div>
+  </div>
+  <div class="gallery-item" style="background-image: url('images/bowling.jpg');">
+    <div class="caption">Bowl Lounge – San Francisco</div>
+  </div>
+  <div class="gallery-item" style="background-image: url('images/oaklandmuseum.jpg');">
+    <div class="caption">Modern Arts Museum – Oakland (museum)</div>
+  </div>
+  <div class="gallery-item" style="background-image: url('images/sjtour.jpg');">
+    <div class="caption">Explore & More – San Francisco</div>
+  </div>
+  <div class="gallery-item" style="background-image: url('images/sfdarts.jpg');">
+    <div class="caption">Bullseye Bar – San Francisco</div>
+  </div>
+  <div class="gallery-item" style="background-image: url('images/oaklandzoo.jpg');">
+    <div class="caption">Urban Jungle – Oakland</div>
+  </div>
+  <div class="gallery-item" style="background-image: url('images/sjpool.jpg');">
+    <div class="caption">Rack & Roll – San Jose</div>
+  </div>
+  <div class="gallery-item" style="background-image: url('images/paintballsj.jpg');">
+    <div class="caption">ColorCombat – San Jose</div>
+  </div>
+  <div class="gallery-item" style="background-image: url('images/gokartsf.jpg');">
+    <div class="caption">Kart King – San Francisco</div>
+  </div>
+</div>
+
 </body>
 </html>
