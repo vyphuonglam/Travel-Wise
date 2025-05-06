@@ -3,60 +3,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <title>Reviews</title>
-  <style>
-    /* Navbar */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 40px;
-      background-color: white;
-      border-bottom: 1px solid #ddd;
-      font-family: 'Open Sans', sans-serif;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap" rel="stylesheet">
 
-    .logo a {
-      text-decoration: none;
-      color: inherit;
-    }
+<style>
+/* ---------- NAVIGATION ---------- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 30px; /* 👈 Small padding keeps navbar slim */
+  background-color: #ffffff; /* your chosen navbar color */
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  height: 50px; /* 👈 Optional hard limit on navbar height */
+}
 
-    .nav-links a {
-      margin-left: 30px;
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
+.logo-img {
+  height: 140px;        /* 👈 Adjust for visual size */
+  max-height: 100%;    /* Keeps it inside navbar */
+  object-fit: contain;
+  display: block;
+}
+.nav-links {
+  display: flex;
+  gap: 25px; /* ✅ Replaces margin-left with a modern layout */
+}
 
-    .nav-links a:hover {
-      color: #4a148c;
-    }
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
 
+.nav-links a:hover {
+  color: #007BFF;
+}
     body {
       margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      background: #f8f8f8;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom right, #fdfbfb, #ebedee);
       color: #222;
     }
 
+    /* Spacer under fixed navbar */
+    .navbar-spacer {
+      height: 60px;
+    }
+
+    /* Animated Reviews Header */
     h1 {
       text-align: center;
       font-size: 3rem;
       letter-spacing: 8px;
-      margin-top: 60px;
+      font-family: 'Playfair Display', serif;
+      margin-top: 20px;
       margin-bottom: 10px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease-out forwards;
+      animation-delay: 0.3s;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .subtitle {
@@ -64,9 +82,9 @@
       font-size: 1.2rem;
       color: #555;
       margin-bottom: 40px;
+      font-style: italic;
     }
 
-    /* Review Section */
     .review-section {
       overflow-y: scroll;
     }
@@ -75,14 +93,13 @@
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.8s ease, transform 0.8s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 30px;
-      box-sizing: border-box;
+      background: white;
+      border-radius: 16px;
+      margin: 40px auto;
+      padding: 30px 25px;
+      max-width: 800px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
       text-align: center;
-      height: 100vh;
     }
 
     .review.visible {
@@ -95,23 +112,34 @@
       max-height: 60vh;
       object-fit: cover;
       border-radius: 12px;
+      margin-bottom: 15px;
     }
 
     .review h2 {
-      margin: 20px 0 10px;
-      font-size: 2rem;
+      margin: 10px 0 5px;
+      font-size: 1.8rem;
+      font-family: 'Playfair Display', serif;
     }
 
-    .stars {
-      font-size: 1.5rem;
-      color: #FFD700;
+    .rating-text {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #d4af37;
+      margin-bottom: 10px;
     }
 
     .description {
       max-width: 700px;
-      margin-top: 10px;
       font-size: 1.1rem;
       color: #444;
+      margin: auto;
+    }
+
+    .author {
+      margin-top: 12px;
+      font-style: italic;
+      color: #666;
+      font-size: 0.95rem;
     }
 
     .scroll-hint {
@@ -124,12 +152,15 @@
     }
   </style>
 </head>
+
 <body>
 
 <!-- Header -->
 <header class="navbar">
   <div class="logo">
-    <a href="home.html">🌍 TravelWise</a>
+    <a href="home.html">
+      <img src="images/travel.png" alt="TravelWise Logo" class="logo-img">
+    </a>
   </div>
   <nav class="nav-links">
     <a href="reviews.html">Reviews</a>
@@ -138,53 +169,61 @@
   </nav>
 </header>
 
+<!-- Spacer for fixed navbar -->
+<div class="navbar-spacer"></div>
+
 <!-- Page Title -->
 <h1>REVIEWS</h1>
-<p class="subtitle">Read our customers experience</p>
+<p class="subtitle">Read what our customers have to say 💬</p>
 
 <!-- Reviews -->
 <div class="review-section">
 
   <div class="review">
     <img src="images/bowling.jpg" alt="Bowl Lounge SF">
-    <h2>Bowl Lounge – San Francisco</h2>
-    <div class="stars">★★★☆☆½</div>
+    <h2>🎳 Bowl Lounge – San Francisco</h2>
+    <div class="rating-text">★★★☆☆</div>
     <p class="description">Fun bowling vibe with music and snacks, but a little crowded on weekends. Great for casual hangouts.</p>
+    <p class="author">– Sara K.</p>
   </div>
 
   <div class="review">
     <img src="images/techmuseum.jpg" alt="Tech Time Museum SF">
-    <h2>Tech Time Museum – San Francisco</h2>
-    <div class="stars">★★★★☆</div>
+    <h2>🧪 Tech Time Museum – San Francisco</h2>
+    <div class="rating-text">★★★★☆</div>
     <p class="description">Interactive exhibits make it fun for all ages. A few sections were closed, but still an exciting and educational experience.</p>
+    <p class="author">– Jason M.</p>
   </div>
 
   <div class="review">
     <img src="images/oaklandzoo.jpg" alt="Urban Jungle Oakland">
-    <h2>Urban Jungle – Oakland</h2>
-    <div class="stars">★★★★★</div>
-    <p class="description">Absolutely thrilling! Great mix of climbing, zip lines, and obstacle courses. Staff was helpful and safety was top notch.</p>
+    <h2>🦍 Urban Jungle – Oakland</h2>
+    <div class="rating-text">★★★★★</div>
+    <p class="description">Absolutely thrilling! There were so many exotic animals and my son was really excited to see the tigers. Staff was really helpful and safety was top notch, I felt safe the whole time.</p>
+    <p class="author">– Lily R.</p>
   </div>
 
   <div class="review">
     <img src="images/gokart.jpg" alt="Turbo Track SJ">
-    <h2>Turbo Track – San Jose</h2>
-    <div class="stars">★★★★☆</div>
+    <h2>🏎️ Turbo Track – San Jose</h2>
+    <div class="rating-text">★★★★☆</div>
     <p class="description">Awesome high-speed go-karts and a great layout. Could use more track lighting at night though.</p>
+    <p class="author">– Kevin L.</p>
   </div>
 
   <div class="review">
     <img src="images/topgolf.jpg" alt="Drive Time SJ">
-    <h2>Drive Time – San Jose</h2>
-    <div class="stars">★★☆☆☆</div>
-    <p class="description">The concept is cool but the cars felt outdated and the experience wasn’t as smooth as expected.</p>
+    <h2>⛳ Drive Time – San Jose</h2>
+    <div class="rating-text">★★☆☆☆</div>
+    <p class="description">Maybe it was because we went on a weekend, but the place was absolutely packed and it took our group of five more than 2 hours to get a bay. I did think the staff were a little overwhelmed. Overall I don't think it's worth the wait.</p>
+    <p class="author">– Priya N.</p>
   </div>
 
 </div>
 
-<div class="scroll-hint">Scroll down to see more reviews</div>
+<div class="scroll-hint">Scroll down to see more reviews ⬇️</div>
 
-<!-- Fade-in Animation Script -->
+<!-- Animation Script -->
 <script>
   const reviews = document.querySelectorAll('.review');
   const revealOnScroll = () => {
