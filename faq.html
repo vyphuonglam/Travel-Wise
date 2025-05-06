@@ -1,15 +1,176 @@
-<!-- Example: reviews.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>FAQ | TravelWise</title>
-  <link rel="stylesheet" href="Homestyle.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <title>FAQ</title>
+  <style>
+    /* Header Navbar Styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.logo img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.nav-links a {
+  margin-left: 30px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #4a148c;
+}
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* Header */
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  letter-spacing: 8px;
+}
+
+/* FAQ Container */
+.faq-item {
+  border-bottom: 1px solid #ccc;
+  padding: 15px 0;
+}
+
+/* Question Styling */
+.question {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.3rem; /* Increased from default */
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Answer Styling */
+.answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  font-size: 1.1rem; /* Increased font size */
+  color: #333;
+}
+
+.faq-item.active .answer {
+  max-height: 200px;
+  margin-top: 10px;
+}
+
+/* Arrow Styling */
+.arrow {
+  transition: transform 0.3s;
+}
+
+.faq-item.active .arrow {
+  transform: rotate(90deg);
+}
+
+/* Back Link */
+a {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #4a148c;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+  </style>
 </head>
 <body>
-  <h1>Frequently Asked Question
-  </h1>
-  <p>This is where users can read about frequently asked question
-    .</p>
-  <a href="home.html">← Back to Home</a>
+
+  <!-- Header -->
+<header class="navbar">
+  <div class="logo">
+    <a href="home.html" style="text-decoration: none; color: inherit;">🌍 TravelWise</a>
+  </div>
+  <nav class="nav-links">
+    <a href="reviews.html">Reviews</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+</header>
+
+
+<div style="height: 90px;"></div>
+  <h1>FAQ</h1>
+
+  <div class="faq-item">
+    <div class="question">Are smash/rage rooms safe? <span class="arrow">▶</span></div>
+    <div class="answer">Yes, safety gear and supervision are provided to ensure a safe experience.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="question">Can I just come with my group and pay at the door? <span class="arrow">▶</span></div>
+    <div class="answer">We recommend booking ahead, but some locations allow walk-ins depending on availability.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="question">Is there an age limit? <span class="arrow">▶</span></div>
+    <div class="answer">Yes, participants must be at least 13 years old. Minors require a guardian's consent.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="question">Do I need to bring anything with me to throw? <span class="arrow">▶</span></div>
+    <div class="answer">We provide all items for you to smash. No need to bring your own!</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="question">What should I wear? <span class="arrow">▶</span></div>
+    <div class="answer">Closed-toe shoes and long sleeves are required. Safety gear will be provided.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="question">Are your locations wheelchair accessible? <span class="arrow">▶</span></div>
+    <div class="answer">Most of our locations are ADA compliant. Please call ahead to confirm accessibility.</div>
+  </div>
+
+  <script>
+    document.querySelectorAll(".question").forEach(q => {
+      q.addEventListener("click", () => {
+        const item = q.parentElement;
+        item.classList.toggle("active");
+      });
+    });
+  </script>
 </body>
 </html>
