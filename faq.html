@@ -3,125 +3,187 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <title>FAQ</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
   <style>
-    /* Header Navbar Styling */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  background-color: white;
-  border-bottom: 1px solid #ddd;
-  font-family: 'Open Sans', sans-serif;
-}
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+    }
 
-.logo {
-  display: flex;
-  align-items: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 30px;
+      background-color: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      height: 50px;
+    }
 
-.logo img {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-}
+    .logo-img {
+      height: 140px;
+      object-fit: contain;
+    }
 
-.nav-links a {
-  margin-left: 30px;
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  transition: color 0.3s;
-}
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
 
-.nav-links a:hover {
-  color: #4a148c;
-}
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-}
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
 
-body {
-  font-family: 'Open Sans', sans-serif;
-  padding: 20px;
-  max-width: 800px;
-  margin: auto;
-}
+    .nav-links a:hover {
+      color: #007BFF;
+    }
 
-/* Header */
-h1 {
-  text-align: center;
-  font-size: 3rem;
-  letter-spacing: 8px;
-}
+    .container {
+      max-width: 900px;
+      margin: 100px auto 50px auto;
+      padding: 0 20px;
+    }
 
-/* FAQ Container */
-.faq-item {
-  border-bottom: 1px solid #ccc;
-  padding: 15px 0;
-}
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      letter-spacing: 6px;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s ease forwards;
+    }
 
-/* Question Styling */
-.question {
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 1.3rem; /* Increased from default */
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-/* Answer Styling */
-.answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  font-size: 1.1rem; /* Increased font size */
-  color: #333;
-}
+    .faq-item {
+      background: #fff;
+      border-radius: 15px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      padding: 20px;
+      transition: background 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
+    }
 
-.faq-item.active .answer {
-  max-height: 200px;
-  margin-top: 10px;
-}
+    .faq-item:nth-child(n) {
+      animation-delay: 0.1s;
+    }
 
-/* Arrow Styling */
-.arrow {
-  transition: transform 0.3s;
-}
+    .faq-item:hover {
+      background-color: #f8f8fc;
+    }
 
-.faq-item.active .arrow {
-  transform: rotate(90deg);
-}
+    .question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
 
-/* Back Link */
-a {
-  display: inline-block;
-  margin-top: 20px;
-  text-decoration: none;
-  color: #4a148c;
-  font-weight: bold;
-}
+    .question i:first-child {
+      color: #007BFF;
+      margin-right: 12px;
+      font-size: 1.4rem;
+      min-width: 24px;
+    }
 
-a:hover {
-  text-decoration: underline;
-}
+    .question-text {
+      flex-grow: 1;
+      margin-left: 12px;
+      color: #222;
+    }
 
+    .arrow {
+      font-size: 1rem;
+      transition: transform 0.4s ease;
+    }
+
+    .faq-item.active .arrow {
+      transform: rotate(90deg);
+    }
+
+    .answer {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+      font-size: 1.05rem;
+      color: #444;
+      margin-top: 10px;
+    }
+
+    .faq-item.active .answer {
+      max-height: 200px;
+      opacity: 1;
+    }
+
+    .helpful {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .helpful .thumb {
+      cursor: pointer;
+      transition: transform 0.2s, color 0.2s;
+      color: #444;
+    }
+
+    .helpful .thumb:hover {
+      transform: scale(1.2);
+      color: #28a745;
+    }
+
+    .helpful .thumb.liked {
+      color: #28a745;
+    }
+
+    .like-count {
+      font-weight: bold;
+      color: #444;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2rem; }
+      .question { font-size: 1.1rem; }
+      .answer { font-size: 1rem; }
+    }
   </style>
 </head>
+
 <body>
 
-  <!-- Header -->
+<!-- Header with nav -->
 <header class="navbar">
   <div class="logo">
-    <a href="home.html" style="text-decoration: none; color: inherit;">🌍 TravelWise</a>
+    <a href="home.html">
+      <img src="images/travel.png" alt="TravelWise Logo" class="logo-img">
+    </a>
   </div>
   <nav class="nav-links">
     <a href="reviews.html">Reviews</a>
@@ -130,47 +192,115 @@ a:hover {
   </nav>
 </header>
 
-
-<div style="height: 90px;"></div>
+<!-- FAQ Container -->
+<div class="container">
   <h1>FAQ</h1>
 
+  <!-- Each FAQ item -->
   <div class="faq-item">
-    <div class="question">Are smash/rage rooms safe? <span class="arrow">▶</span></div>
-    <div class="answer">Yes, safety gear and supervision are provided to ensure a safe experience.</div>
+    <div class="question">
+      <i class="fas fa-city"></i>
+      <div class="question-text">What cities does TravelWise show activities from?</div>
+      <i class="fas fa-chevron-right arrow"></i>
+    </div>
+    <div class="answer">We currently list activities in <strong>San Francisco</strong>, <strong>San Jose</strong>, and <strong>Oakland</strong>, with more on the way!</div>
+    <div class="helpful">
+      Was this helpful? 
+      <i class="fas fa-thumbs-up thumb" onclick="handleLike(this)"></i> 
+      <span class="like-count">0</span>
+    </div>
+  </div>
+
+  <!-- Repeat for other FAQ entries -->
+  <div class="faq-item">
+    <div class="question">
+      <i class="fas fa-clipboard-check"></i>
+      <div class="question-text">Am I able to book through TravelWise?</div>
+      <i class="fas fa-chevron-right arrow"></i>
+    </div>
+    <div class="answer">Yes! You can book directly by clicking the activity card and filling out the form.</div>
+    <div class="helpful">
+      Was this helpful? 
+      <i class="fas fa-thumbs-up thumb" onclick="handleLike(this)"></i> 
+      <span class="like-count">0</span>
+    </div>
   </div>
 
   <div class="faq-item">
-    <div class="question">Can I just come with my group and pay at the door? <span class="arrow">▶</span></div>
-    <div class="answer">We recommend booking ahead, but some locations allow walk-ins depending on availability.</div>
+    <div class="question">
+      <i class="fas fa-users"></i>
+      <div class="question-text">Is there a minimum number of people required to book?</div>
+      <i class="fas fa-chevron-right arrow"></i>
+    </div>
+    <div class="answer">No, activities can be booked by individuals or groups unless otherwise stated.</div>
+    <div class="helpful">
+      Was this helpful? 
+      <i class="fas fa-thumbs-up thumb" onclick="handleLike(this)"></i> 
+      <span class="like-count">0</span>
+    </div>
   </div>
 
   <div class="faq-item">
-    <div class="question">Is there an age limit? <span class="arrow">▶</span></div>
-    <div class="answer">Yes, participants must be at least 13 years old. Minors require a guardian's consent.</div>
+    <div class="question">
+      <i class="fas fa-suitcase-rolling"></i>
+      <div class="question-text">Do I need to bring anything with me?</div>
+      <i class="fas fa-chevron-right arrow"></i>
+    </div>
+    <div class="answer">Nope! Just show up ready to enjoy. We’ll handle the rest.</div>
+    <div class="helpful">
+      Was this helpful? 
+      <i class="fas fa-thumbs-up thumb" onclick="handleLike(this)"></i> 
+      <span class="like-count">0</span>
+    </div>
   </div>
 
   <div class="faq-item">
-    <div class="question">Do I need to bring anything with me to throw? <span class="arrow">▶</span></div>
-    <div class="answer">We provide all items for you to smash. No need to bring your own!</div>
+    <div class="question">
+      <i class="fas fa-shoe-prints"></i>
+      <div class="question-text">What should I wear?</div>
+      <i class="fas fa-chevron-right arrow"></i>
+    </div>
+    <div class="answer">Comfortable clothes and closed-toe shoes are recommended.</div>
+    <div class="helpful">
+      Was this helpful? 
+      <i class="fas fa-thumbs-up thumb" onclick="handleLike(this)"></i> 
+      <span class="like-count">0</span>
+    </div>
   </div>
 
   <div class="faq-item">
-    <div class="question">What should I wear? <span class="arrow">▶</span></div>
-    <div class="answer">Closed-toe shoes and long sleeves are required. Safety gear will be provided.</div>
+    <div class="question">
+      <i class="fas fa-credit-card"></i>
+      <div class="question-text">Can I pay for activities through TravelWise?</div>
+      <i class="fas fa-chevron-right arrow"></i>
+    </div>
+    <div class="answer">Payment is currently made in-person. Online payment is coming soon!</div>
+    <div class="helpful">
+      Was this helpful? 
+      <i class="fas fa-thumbs-up thumb" onclick="handleLike(this)"></i> 
+      <span class="like-count">0</span>
+    </div>
   </div>
+</div>
 
-  <div class="faq-item">
-    <div class="question">Are your locations wheelchair accessible? <span class="arrow">▶</span></div>
-    <div class="answer">Most of our locations are ADA compliant. Please call ahead to confirm accessibility.</div>
-  </div>
-
-  <script>
-    document.querySelectorAll(".question").forEach(q => {
-      q.addEventListener("click", () => {
-        const item = q.parentElement;
-        item.classList.toggle("active");
-      });
+<!-- JavaScript for interactivity -->
+<script>
+  // Toggle open/close for FAQ answers
+  document.querySelectorAll(".question").forEach(q => {
+    q.addEventListener("click", () => {
+      q.closest(".faq-item").classList.toggle("active");
     });
-  </script>
+  });
+
+  // Handle like functionality
+  function handleLike(icon) {
+    if (icon.classList.contains("liked")) return; // prevent multiple likes
+    icon.classList.add("liked"); // turn green
+    const countSpan = icon.nextElementSibling;
+    let current = parseInt(countSpan.innerText);
+    countSpan.innerText = current + 1;
+  }
+</script>
+
 </body>
 </html>
