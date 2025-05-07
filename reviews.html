@@ -5,45 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Reviews</title>
 
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap" rel="stylesheet">
 
-<style>
-/* ---------- NAVIGATION ---------- */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 30px; /* 👈 Small padding keeps navbar slim */
-  background-color: #ffffff; /* your chosen navbar color */
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  height: 50px; /* 👈 Optional hard limit on navbar height */
-}
-
-.logo-img {
-  height: 140px;        /* 👈 Adjust for visual size */
-  max-height: 100%;    /* Keeps it inside navbar */
-  object-fit: contain;
-  display: block;
-}
-.nav-links {
-  display: flex;
-  gap: 25px; /* ✅ Replaces margin-left with a modern layout */
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.nav-links a:hover {
-  color: #007BFF;
-}
+  <style>
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
@@ -51,12 +16,45 @@ header {
       color: #222;
     }
 
-    /* Spacer under fixed navbar */
+    /* ---------- NAVIGATION ---------- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 30px;
+      background-color: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      height: 50px;
+    }
+
+    .logo-img {
+      height: 140px;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #007BFF;
+    }
+
     .navbar-spacer {
       height: 60px;
     }
 
-    /* Animated Reviews Header */
     h1 {
       text-align: center;
       font-size: 3rem;
@@ -67,7 +65,6 @@ header {
       opacity: 0;
       transform: translateY(30px);
       animation: fadeInUp 1.2s ease-out forwards;
-      animation-delay: 0.3s;
     }
 
     @keyframes fadeInUp {
@@ -83,10 +80,11 @@ header {
       color: #555;
       margin-bottom: 40px;
       font-style: italic;
+      animation: fadeInUp 1.4s ease-out forwards;
     }
 
     .review-section {
-      overflow-y: scroll;
+      padding: 0 20px 80px;
     }
 
     .review {
@@ -94,17 +92,23 @@ header {
       transform: translateY(40px);
       transition: opacity 0.8s ease, transform 0.8s ease;
       background: white;
-      border-radius: 16px;
+      border-radius: 20px;
       margin: 40px auto;
       padding: 30px 25px;
       max-width: 800px;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
       text-align: center;
+      position: relative;
     }
 
     .review.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    .review:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
     }
 
     .review img {
@@ -121,18 +125,23 @@ header {
       font-family: 'Playfair Display', serif;
     }
 
-    .rating-text {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #d4af37;
+    .stars {
+      color: #ffd700;
+      font-size: 1.4rem;
       margin-bottom: 10px;
+      animation: sparkle 1.5s infinite alternate ease-in-out;
+    }
+
+    @keyframes sparkle {
+      from { transform: scale(1); opacity: 0.8; }
+      to { transform: scale(1.1); opacity: 1; }
     }
 
     .description {
-      max-width: 700px;
       font-size: 1.1rem;
       color: #444;
-      margin: auto;
+      max-width: 700px;
+      margin: 0 auto 10px;
     }
 
     .author {
@@ -142,17 +151,61 @@ header {
       font-size: 0.95rem;
     }
 
-    .scroll-hint {
+    .helpful {
+      margin-top: 18px;
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    .thumb-btn {
+      margin-left: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      background: none;
+      border: none;
+      color: #555;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .thumb-btn:hover {
+      transform: scale(1.2);
+      color: #007BFF;
+    }
+
+    .thumb-btn.liked {
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    /* ---------- BACK TO TOP ---------- */
+    #backToTop {
       position: fixed;
-      bottom: 20px;
-      width: 100%;
+      bottom: 25px;
+      right: 25px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      padding: 14px 18px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: background 0.3s ease;
+      z-index: 999;
+    }
+
+    #backToTop:hover {
+      background-color: #0056b3;
+    }
+
+    .scroll-hint {
       text-align: center;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: #777;
+      margin-top: 30px;
     }
   </style>
 </head>
-
 <body>
 
 <!-- Header -->
@@ -169,62 +222,86 @@ header {
   </nav>
 </header>
 
-<!-- Spacer for fixed navbar -->
 <div class="navbar-spacer"></div>
 
 <!-- Page Title -->
 <h1>REVIEWS</h1>
 <p class="subtitle">Read what our customers have to say 💬</p>
 
-<!-- Reviews -->
+<!-- Review Section -->
 <div class="review-section">
 
   <div class="review">
     <img src="images/bowling.jpg" alt="Bowl Lounge SF">
     <h2>🎳 Bowl Lounge – San Francisco</h2>
-    <div class="rating-text">★★★☆☆</div>
+    <div class="stars">★★★☆☆</div>
     <p class="description">Fun bowling vibe with music and snacks, but a little crowded on weekends. Great for casual hangouts.</p>
     <p class="author">– Sara K.</p>
+    <div class="helpful">
+      Was this helpful?
+      <button class="thumb-btn" onclick="handleThumb(this)">👍 <span class="thumb-count">0</span></button>
+    </div>
   </div>
 
   <div class="review">
     <img src="images/techmuseum.jpg" alt="Tech Time Museum SF">
     <h2>🧪 Tech Time Museum – San Francisco</h2>
-    <div class="rating-text">★★★★☆</div>
+    <div class="stars">★★★★☆</div>
     <p class="description">Interactive exhibits make it fun for all ages. A few sections were closed, but still an exciting and educational experience.</p>
     <p class="author">– Jason M.</p>
+    <div class="helpful">
+      Was this helpful?
+      <button class="thumb-btn" onclick="handleThumb(this)">👍 <span class="thumb-count">0</span></button>
+    </div>
   </div>
 
   <div class="review">
     <img src="images/oaklandzoo.jpg" alt="Urban Jungle Oakland">
     <h2>🦍 Urban Jungle – Oakland</h2>
-    <div class="rating-text">★★★★★</div>
-    <p class="description">Absolutely thrilling! There were so many exotic animals and my son was really excited to see the tigers. Staff was really helpful and safety was top notch, I felt safe the whole time.</p>
+    <div class="stars">★★★★★</div>
+    <p class="description">Absolutely thrilling! There were so many exotic animals and my son was really excited to see the tigers.</p>
     <p class="author">– Lily R.</p>
+    <div class="helpful">
+      Was this helpful?
+      <button class="thumb-btn" onclick="handleThumb(this)">👍 <span class="thumb-count">0</span></button>
+    </div>
   </div>
 
-  <div class="review">
-    <img src="images/gokart.jpg" alt="Turbo Track SJ">
-    <h2>🏎️ Turbo Track – San Jose</h2>
-    <div class="rating-text">★★★★☆</div>
-    <p class="description">Awesome high-speed go-karts and a great layout. Could use more track lighting at night though.</p>
-    <p class="author">– Kevin L.</p>
-  </div>
+    <div class="review">
+      <img src="images/gokart.jpg" alt="Turbo Track SJ">
+      <h2>🏎️ Turbo Track – San Jose</h2>
+      <div class="stars">★★★★☆</div>
+      <p class="description">Awesome high-speed go-karts and a great layout. Could use more track lighting at night though.</p>
+      <p class="author">– Kevin L.</p>
+      <div class="helpful">
+        Was this helpful?
+        <button class="thumb-btn" onclick="handleThumb(this)">👍 <span class="thumb-count">0</span></button>
+      </div>
+    </div>
 
-  <div class="review">
-    <img src="images/topgolf.jpg" alt="Drive Time SJ">
-    <h2>⛳ Drive Time – San Jose</h2>
-    <div class="rating-text">★★☆☆☆</div>
-    <p class="description">Maybe it was because we went on a weekend, but the place was absolutely packed and it took our group of five more than 2 hours to get a bay. I did think the staff were a little overwhelmed. Overall I don't think it's worth the wait.</p>
-    <p class="author">– Priya N.</p>
+  
+    <div class="review">
+      <img src="images/topgolf.jpg" alt="Drive Time SJ">
+      <h2>⛳ Drive Time – San Jose</h2>
+      <div class="stars">★★☆☆☆</div>
+      <p class="description">Maybe it was because we went on a weekend, but the place was absolutely packed and it took our group of five more than 2 hours to get a bay. I did think the staff were a little overwhelmed. Overall I don't think it's worth the wait.</p>
+      <p class="author">– Priya N.</p>
+      <div class="helpful">
+        Was this helpful?
+        <button class="thumb-btn" onclick="handleThumb(this)">👍 <span class="thumb-count">0</span></button>
+      </div>
+    </div>
+  
   </div>
 
 </div>
 
-<div class="scroll-hint">Scroll down to see more reviews ⬇️</div>
+<!-- Back to Top Button -->
+<button id="backToTop" onclick="scrollToTop()">↑</button>
 
-<!-- Animation Script -->
+<!-- Scripts -->
 <script>
+  // Reveal reviews on scroll
   const reviews = document.querySelectorAll('.review');
   const revealOnScroll = () => {
     reviews.forEach((review) => {
@@ -234,9 +311,24 @@ header {
       }
     });
   };
-
   window.addEventListener('scroll', revealOnScroll);
   window.addEventListener('load', revealOnScroll);
+
+  // Handle thumbs up
+  function handleThumb(button) {
+    const countSpan = button.querySelector('.thumb-count');
+    const currentCount = parseInt(countSpan.textContent);
+
+    if (!button.classList.contains('liked')) {
+      countSpan.textContent = currentCount + 1;
+      button.classList.add('liked');
+    }
+  }
+
+  // Back to top scroll
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 </script>
 
 </body>
