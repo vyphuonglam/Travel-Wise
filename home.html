@@ -5,12 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TravelWise</title>
   <link rel="stylesheet" href="Homestyle.css" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
   <!-- Navigation Header -->
   <header>
-    <div class="logo">🌍 TravelWise</div>
+    <div class="logo">
+      <img src="images/travel.png" alt="TravelWise Logo" class="logo-img">
+    </div>
     <nav>
       <ul>
         <li><a href="reviews.html">Reviews</a></li>
@@ -27,7 +33,7 @@
         <form action="search.php" method="GET">
           <label for="city">Where To?:</label>
           <div class="search-group">
-            <input type="text" name="city" id="city" placeholder="Which city would you like visit?" required>
+            <input type="text" name="city" id="city" placeholder="Which city would you like to visit?" required>
             <button type="submit">🔍</button>
           </div>
         </form>
@@ -36,22 +42,37 @@
   </section>
   
 
-  <!-- Popular Activities -->
-  <section id="popular" class="popular-section">
-    <h2>Popular Activities in the Bay</h2>
-    <div class="activity-cards">
-      <div class="card">
-        <img src="https://source.unsplash.com/featured/?hiking" alt="Hiking">
-        <h3>Golden Gate Hike</h3>
-        <p>Enjoy panoramic views while walking across San Francisco’s iconic bridge.</p>
+<!-- Popular Activities -->
+<section id="popular" class="popular-section">
+  <h2>Popular Activities in the Bay</h2>
+  
+  <div class="card slideshow-card">
+    <div class="slideshow-container">
+      <!-- Slideshow images -->
+      <img class="slide activity-slide" src="images/techmuseum.jpg" alt="Museum">
+      <img class="slide activity-slide" src="images/gokart.jpg" alt="GoKart">
+      <img class="slide activity-slide" src="images/oaklandpball.png" alt="Paintball">
+      <img class="slide activity-slide" src="images/sfrage.jpg" alt="RageRoom">
+      <img class="slide activity-slide" src="images/sjaxe.jpg" alt="AxeThrowing">
+      <div class="slide-caption" id="activity-caption">Hiking</div>
       </div>
-      <div class="card">
-        <img src="https://source.unsplash.com/featured/?museum" alt="Museum">
-        <h3>Tech Museum</h3>
-        <p>Explore innovation in the heart of Silicon Valley in San Jose.</p>
-      </div>
+      <h3 id="activity-title">Golden Gate Hike</h3>
+      <p id="activity-desc">Enjoy panoramic views while walking across San Francisco’s iconic bridge.</p>
     </div>
-  </section>
+     
+  <div class="stress-box">
+    <h3 class="stress-heading">😤 Feeling stressed?<br><span>Here's a fun way to let it out!</span></h3>
+  </div>
+  
+  <div class="video-wrapper">
+    <iframe width="300" height="500" src="https://youtube.com/embed/HeQ8Kk2B0hs?si=F8OsAgX1HK6fg_r_" 
+      title="Rage Room Video" frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen></iframe>
+  </div>
+  
+</section>
+
 
   <!-- Why Use TravelWise -->
 <section class="why-us">
